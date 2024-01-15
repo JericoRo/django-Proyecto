@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h1 class="text-center display-3 py-5">Blog</h1>
+        <ul class="list-group">
+            {% for blog in blog %}
+            <a class="list-group-item" href="{% url 'blog_detail' blog.id %}">
+
+                <header class="d-flex justify-content-between">  
+                {% if blog.important %}
+                <h1 class="fw-bold text-success">{{blog.tittle}}</h1>
+                {% else %}
+                <h1 class="fw-bold">{{blog.tittle}}</h1>
+                {% endif %}
+                <p>{{blog.user.username}}</p>
+                </header>
+                <p>{{blog.description}}</p>
+
+                <p>{{blog.datecompleted|date:'M j Y:i'}}</p>
+        </a>
+            {% endfor %}
+        </ul>
+                </div>
+            </div>
+</main>
+
+{% endblock %}
